@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">VkAct</string>
+    <string name="textAuthor">Netologiya Universitet internet professiy budushego</string>
+    <string name="textPublished">30 July at 16:30</string>
+    <string name="textContent">Привет это Нетология, к сожалению я не нашел полного текста в ресурсах ДЗ, а с экрана переписывать мне не хочется, по этому я тут просто напишу много слов и думаю, что этого будет достаточно, мои дела отлично, в конце лета двигаюсь в СПБ к другу, буду готовиться к собеседованиям на работу, ах точно, вот тут еще сайт, посетите google.com</string>
+    <string name="textLikes">14</string>
+    <string name="textShares">15</string>
+    <string name="textViews">1337</string>
+
+
+</resources>
