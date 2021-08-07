@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                     "тся, по этому я тут просто напишу много слов и думаю, что этого будет достаточно, мои дела отлично, в конце лета двигаюсь в СПБ к другу, буду готовиться" +
                     " к собеседованиям на работу, ах точно, вот тут еще сайт, посетите google.com",
             published = "30 July at 16:30",
-            likeCount = "999",
+            likeCount = "9998",
             sharesCount = "1",
             likedByMe = false
 
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                 post.likedByMe = !post.likedByMe
                 Log.d("LIKE", "LIKE")
                 var counter = post.likeCount.toInt()
+
 //                if(counter in 1000..999_999) {
 //                    counter / 1000
 //                    textLikes.text = "$counter"+"K"
@@ -63,18 +64,29 @@ class MainActivity : AppCompatActivity() {
 //                }
                 if (post.likedByMe) {
                     counter++
-                    textLikes.text = "$counter"
+//                    textLikes.text = "$counter"
                     when (counter){
-                        in 1000..999_999 -> textLikes.text = "${counter.toDouble()/1000}K"
-                        in 1_000_000..999_999_999 -> textLikes.text = "${counter.toDouble()/1000000}M"
+                        in 0..999 -> textLikes.text = "$counter"
+                        in 1000..1099 -> textLikes.text= "${counter/1000}K"
+
+                        in 1100..9999 -> textLikes.text = "${counter.toDouble()/1000}K"
+                        in 10000..999_999 -> textLikes.text = "${counter.toDouble()/1000}K"
+                        in 1_000_000..1_099_999 ->textLikes.text = "${counter/1000000}M"
+                        in 1_100_000..999_999_999 -> textLikes.text = "${counter.toDouble()/1000000}M"
+
                     }
 
                 } else {
-                    counter - 1
-                    textLikes.text = "$counter"
+                    counter-1
+//                    textLikes.text = "$counter"
                     when (counter){
-                        in 1000..999_999 -> textLikes.text = "${counter.toDouble()/1000}K"
-                        in 1_000_000..999_999_999 -> textLikes.text = "${counter.toDouble()/1000000}M"
+                        in 0..999 -> textLikes.text = "$counter"
+                        in 1000..1099 -> textLikes.text= "${counter/1000}K"
+                        in 1100..9999 -> textLikes.text = "${counter.toDouble()/1000}K"
+                        in 10000..999_999 -> textLikes.text = "${counter/1000}K"
+                        in 1_000_000..1_099_999 ->textLikes.text = "${counter/1000000}M"
+                        in 1_100_000..999_999_999 -> textLikes.text = "${counter.toDouble()/1000000}M"
+
                     }
                 }
 
