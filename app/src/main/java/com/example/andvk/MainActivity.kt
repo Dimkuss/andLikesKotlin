@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import com.example.andvk.databinding.ActivityMainBinding
 import com.example.andvk.dto.Post
+import com.example.andvk.repository.PostRepositoryInMemoryImpl
 import com.example.andvk.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -47,17 +48,9 @@ class MainActivity : AppCompatActivity() {
                 Log.d("LIKE", "LIKE")
                 var counter = post.likeCount.toInt()
 
-//                if(counter in 1000..999_999) {
-//                    counter / 1000
-//                    textLikes.text = "$counter"+"K"
-//                }
-//                if(counter in 1_000_000..999_999_999) {
-//                    counter / 1000000
-//                    textLikes.text = "$counter"+"M"
-//                }
                 if (post.likedByMe) {
                     counter++
-//                    textLikes.text = "$counter"
+//
                     when (counter) {
                         in 0..999 -> textLikes.text = "$counter"
                         in 1000..1099 -> textLikes.text = "${counter / 1000}K"
@@ -72,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
                 } else {
                     counter - 1
-//                    textLikes.text = "$counter"
+//
                     when (counter) {
                         in 0..999 -> textLikes.text = "$counter"
                         in 1000..1099 -> textLikes.text = "${counter / 1000}K"
