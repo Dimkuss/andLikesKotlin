@@ -3,6 +3,7 @@ package com.example.andvk.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.andvk.dto.Post
+import kotlinx.android.synthetic.main.activity_main.*
 
 class PostRepositoryInMemoryImpl : PostRepository{
     private var post = Post(
@@ -24,6 +25,37 @@ class PostRepositoryInMemoryImpl : PostRepository{
     override fun like() {
         post = post.copy(likedByMe = !post.likedByMe)
         data.value = post
+//        var counter = post.likeCount.toInt()
+//
+//        if (post.likedByMe) {
+//            counter++
+//
+//            when (counter) {
+//                in 0..999 -> post.copy(likeCount = "$counter" )
+////                in 1000..1099 -> textLikes.text = "${counter / 1000}K"
+////
+////                in 1100..9999 -> textLikes.text = "${counter.toDouble() / 1000}K"
+////                in 10000..999_999 -> textLikes.text = "${counter.toDouble() / 1000}K"
+////                in 1_000_000..1_099_999 -> textLikes.text = "${counter / 1000000}M"
+////                in 1_100_000..999_999_999 -> textLikes.text =
+////                    "${counter.toDouble() / 1000000}M"
+//
+//            }
+//
+//        } else {
+//            counter - 1
+////textLikes.text = "$counter"
+//            when (counter) {
+//                in 0..999 -> post.copy(likeCount = "$counter" )
+////                in 1000..1099 -> textLikes.text = "${counter / 1000}K"
+////                in 1100..9999 -> textLikes.text = "${counter.toDouble() / 1000}K"
+////                in 10000..999_999 -> textLikes.text = "${counter / 1000}K"
+////                in 1_000_000..1_099_999 -> textLikes.text = "${counter / 1000000}M"
+////                in 1_100_000..999_999_999 -> textLikes.text =
+////                    "${counter.toDouble() / 1000000}M"
+//
+//            }
+//        }
     }
 
 }

@@ -21,18 +21,20 @@ class MainActivity : AppCompatActivity() {
         val viewModel: PostViewModel by viewModels()
         viewModel.data.observe(this, { post ->
             with(binding) {
-                this
+
                 textShares.text = post.sharesCount
                 textLikes.text = post.likeCount
                 author.text = post.author
                 published.text = post.published
                 content.text = post.content
+                likes.setImageResource(
+                    if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
+                )
 
-                if (post.likedByMe) {
-                    likes.setImageResource(R.drawable.ic_baseline_favorite_24)
-                }
             }
-
+        binding.likes.setOnClickListener{
+            viewModel.like()
+        }
 
 //            root.setOnClickListener {
 //                it
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
                 if (post.likedByMe) {
                     counter++
-//
+
                     when (counter) {
                         in 0..999 -> textLikes.text = "$counter"
                         in 1000..1099 -> textLikes.text = "${counter / 1000}K"
@@ -79,9 +81,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
 
-                likes.setImageResource(
-                    if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
-                )
+
 
             }
             shares?.setOnClickListener {
