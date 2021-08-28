@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import com.example.andvk.dto.Post
 
 interface PostRepository {
-    fun get(): LiveData<Post>
-    fun like()
+    fun getAll(): LiveData<Post>
+    fun likeById()
+    fun share()
 
 }
