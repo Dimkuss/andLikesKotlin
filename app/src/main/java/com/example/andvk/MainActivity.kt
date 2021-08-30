@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import com.example.andvk.adapter.PostAdapter
 //import com.example.andvk.adapter.PostAdapter
 import com.example.andvk.databinding.ActivityMainBinding
 import com.example.andvk.dto.Post
@@ -20,32 +21,37 @@ class MainActivity : AppCompatActivity() {
 
 
         val viewModel: PostViewModel by viewModels()
-        with(binding) {
-            likes.setOnClickListener {
-                viewModel.likeById()
-            }
-            shares.setOnClickListener {
-                viewModel.share()
-            }
+//        with(binding) {
+//            likes.setOnClickListener {
+//                viewModel.likeById()
+//            }
+//            shares.setOnClickListener {
+//                viewModel.share()
+//            }
 
-//        val adapter = PostAdapter{
-//            viewModel.like()
-//        }
-//        binding.recList.adapter = adapter
+        val adapter = PostAdapter{
+            viewModel.likeById()
+        }
+
+        binding.recList.adapter = adapter
+
+
 
             viewModel.data.observe(this@MainActivity) { post ->
-                textShares.text = formatCounter(post.sharesCount)
-                textLikes.text = formatCounter(post.likeCount)
-                author.text = post.author
-                published.text = post.published
-                content.text = post.content
-                likes.setImageResource(
-                    if (post.likedByMe) {
-                        R.drawable.ic_baseline_favorite_24
-                    } else {
-                        R.drawable.ic_baseline_favorite_border_24
-                    }
-                )
+
+                adapter.submitList(post)
+//                textShares.text = formatCounter(post.sharesCount)
+//                textLikes.text = formatCounter(post.likeCount)
+//                author.text = post.author
+//                published.text = post.published
+//                content.text = post.content
+//                likes.setImageResource(
+//                    if (post.likedByMe) {
+//                        R.drawable.ic_baseline_favorite_24
+//                    } else {
+//                        R.drawable.ic_baseline_favorite_border_24
+//                    }
+//                )
             }
         }
     }
@@ -60,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             in 1_100_000..999_999_999 -> "${counter.toDouble() / 1000000}M"
             else -> counter.toString()
         }
-}
+
 
 
 
