@@ -5,8 +5,8 @@ data class Post(
     val author: String,
     val content: String,
     val published: String,
-    val likeCount:Long,
-    val sharesCount:Long,
+    val likeCount:Long = 0,
+    val sharesCount:Long = 0,
     val likedByMe:Boolean = false
 
 )
