@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_save_48.xml" value="0.12083333333333333" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/layout/card_post.xml" value="0.8588709677419355" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/menu/options_post.xml" value="0.25" />
         <entry key="..\:/Users/dounty/AndroidStudioProjects/andVK/app/src/main/res/drawable/ic_baseline_face_24.xml" value="0.30185185185185187" />
         <entry key="..\:/Users/dounty/AndroidStudioProjects/andVK/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/dounty/AndroidStudioProjects/andVK/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.22135416666666666" />
@@ -13,7 +17,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

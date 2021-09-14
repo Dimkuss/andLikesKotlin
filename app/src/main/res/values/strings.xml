@@ -6,6 +6,10 @@
     <string name="textLikes">14</string>
     <string name="textShares">15</string>
     <string name="textViews">1337</string>
+    <string name="textRemove">Remove</string>
+    <string name="textEdit">Edit</string>
+    <string name="textPost">Post text here</string>
+    <string name="like">Like</string>
 
 
 </resources>
