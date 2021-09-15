@@ -50,6 +50,19 @@
 
             />
 
+    <ImageButton
+        android:id="@+id/discardEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:contentDescription="@string/like"
+        android:src="@drawable/ic_baseline_cancel_48"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/save"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toEndOf="@id/content" />
+
 
 
 

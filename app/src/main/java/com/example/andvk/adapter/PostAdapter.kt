@@ -2,6 +2,7 @@ package com.example.andvk.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -17,6 +18,7 @@ interface OnInteractionListener {
     fun onEdit(post: Post) {}
     fun onLike(post: Post) {}
     fun onShare(post: Post) {}
+    fun onDiscard(post: Post){}
 }
 
 
@@ -45,12 +47,15 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
+
+
             likes.setImageResource(
                 if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
             )
             likes.setOnClickListener {
                 onInteractionListener.onLike(post)
             }
+
 
             textLikes.text = CounterFormatter.formatCounter(post.likeCount)
             shares.setOnClickListener {
@@ -67,6 +72,7 @@ class PostViewHolder(
                                 true
                             }
                             R.id.menuActionEdit -> {
+
                                 onInteractionListener.onEdit(post)
                                 true
                             }

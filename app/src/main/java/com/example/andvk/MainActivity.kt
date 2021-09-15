@@ -3,8 +3,12 @@ package com.example.andvk
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.example.andvk.adapter.OnInteractionListener
 import com.example.andvk.adapter.PostAdapter
 //import com.example.andvk.adapter.PostAdapter
@@ -41,6 +45,10 @@ class MainActivity : AppCompatActivity() {
             override fun onShare(post: Post) {
                 viewModel.shareById(post.id)
             }
+
+            override fun onDiscard(post: Post) {
+                viewModel.discardChanges()
+            }
         }
 
 
@@ -53,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(post)
         }
 
+
         viewModel.edited.observe(this, { post ->
             if (post.id == 0L) {
                 return@observe
@@ -61,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                 requestFocus()
                 setText(post.content)
             }
+
         })
         binding.save.setOnClickListener {
             with(binding.content) {
@@ -71,13 +81,29 @@ class MainActivity : AppCompatActivity() {
                     ).show()
                     return@setOnClickListener
                 }
+
                 viewModel.changeContent(text.toString())
                 viewModel.save()
                 setText("")
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
+                binding.discardEdit.isGone = true
 
             }
+        }
+        binding.content.setOnClickListener {
+            binding.discardEdit.isVisible = true
+        }
+        binding.discardEdit.setOnClickListener {
+            binding.discardEdit.isGone = true
+            with(binding.content) {
+                viewModel.discardChanges()
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+            }
+
+
         }
     }
 }

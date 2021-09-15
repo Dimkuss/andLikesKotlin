@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.andvk.dto.Post
 
-//import kotlinx.android.synthetic.main.activity_main.*
-
 class PostRepositoryInMemoryImpl : PostRepository {
     private var nextId = 1L
     private var posts = listOf(
@@ -122,9 +120,17 @@ class PostRepositoryInMemoryImpl : PostRepository {
         data.value = posts
     }
 
-    override fun edit(post: Post) {
-        TODO("Not yet implemented")
-    }
+    override fun discardEdit(post: Post) {
+        if (post.id == 0L){
+            data.value = posts
+            return
+        }
+
+        data.value = posts
+
+        }
+
+
 
 
 }
