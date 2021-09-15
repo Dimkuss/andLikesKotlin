@@ -121,16 +121,14 @@ class PostRepositoryInMemoryImpl : PostRepository {
     }
 
     override fun discardEdit(post: Post) {
-        if (post.id == 0L){
+        if (post.id == 0L) {
             data.value = posts
             return
         }
 
         data.value = posts
 
-        }
-
-
+    }
 
 
 }

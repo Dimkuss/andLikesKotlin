@@ -18,7 +18,7 @@ interface OnInteractionListener {
     fun onEdit(post: Post) {}
     fun onLike(post: Post) {}
     fun onShare(post: Post) {}
-    fun onDiscard(post: Post){}
+    fun onDiscard(post: Post) {}
 }
 
 
