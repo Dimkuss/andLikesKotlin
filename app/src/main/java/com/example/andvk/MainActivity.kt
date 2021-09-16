@@ -2,19 +2,14 @@ package com.example.andvk
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isGone
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.example.andvk.adapter.OnInteractionListener
 import com.example.andvk.adapter.PostAdapter
-//import com.example.andvk.adapter.PostAdapter
 import com.example.andvk.databinding.ActivityMainBinding
 import com.example.andvk.dto.Post
-import com.example.andvk.repository.PostRepositoryInMemoryImpl
 import com.example.andvk.util.AndroidUtils
 import com.example.andvk.viewmodel.PostViewModel
 
@@ -91,8 +86,8 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-        binding.content.setOnClickListener {
-            binding.discardEdit.isVisible = true
+        binding.content.setOnFocusChangeListener { _, hasFocus ->
+            binding.discardEdit.isVisible = hasFocus
         }
         binding.discardEdit.setOnClickListener {
             binding.discardEdit.isGone = true
