@@ -46,21 +46,17 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
+            likes.isChecked = post.likedByMe
+            likes.text = CounterFormatter.formatCounter(post.likeCount)
+            shares.text = CounterFormatter.formatCounter(post.sharesCount)
 
-
-            likes.setImageResource(
-                if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
-            )
             likes.setOnClickListener {
                 onInteractionListener.onLike(post)
             }
 
-
-            textLikes.text = CounterFormatter.formatCounter(post.likeCount)
             shares.setOnClickListener {
                 onInteractionListener.onShare(post)
             }
-            textShares.text = CounterFormatter.formatCounter(post.sharesCount)
             popupMenu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.options_post)
@@ -96,4 +92,7 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
         return oldItem == newItem
     }
 
+    override fun getChangePayload(oldItem: Post, newItem: Post): Any = Unit
+
 }
+

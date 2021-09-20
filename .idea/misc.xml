@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_baseline_cancel_48.xml" value="0.11770833333333333" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_baseline_check_circle_48.xml" value="0.11770833333333333" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_baseline_face_24.xml" value="0.11770833333333333" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.12083333333333333" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.10885416666666667" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.11770833333333333" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.11770833333333333" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.11770833333333333" />
+        <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_like_selector.xml" value="0.10885416666666667" />
         <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/drawable/ic_save_48.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Dmitry/AndroidStudioProjects/andLikesKotlin/app/src/main/res/layout/card_post.xml" value="0.24623803009575923" />

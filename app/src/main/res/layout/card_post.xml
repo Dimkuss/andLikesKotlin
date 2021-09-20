@@ -26,12 +26,12 @@
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:singleLine="true"
+        android:text="@string/textAuthor"
         app:layout_constraintBottom_toTopOf="@id/published"
         app:layout_constraintEnd_toStartOf="@id/popupMenu"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        android:text="@string/textAuthor" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/published"
@@ -40,33 +40,35 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:text="@string/textPublished"
         app:layout_constraintBottom_toBottomOf="@+id/barrier"
         app:layout_constraintEnd_toStartOf="@id/popupMenu"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/author"
-        android:text="@string/textPublished"
 
 
         />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/popupMenu"
+        style="@style/Buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
+        android:contentDescription="В"
+        app:icon="@drawable/ic_baseline_more_vert_24"
+        app:iconTint="@color/ic_share_tint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_more_vert_24"
-        android:contentDescription="В" />
+        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="author,avatar,published,popupMenu"
-        />
+        app:constraint_referenced_ids="author,avatar,published,popupMenu" />
 
     <TextView
         android:id="@+id/content"
@@ -74,57 +76,42 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:autoLink="web"
+        android:text="@string/textContent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier"
-        android:text="@string/textContent" />
+        app:layout_constraintTop_toBottomOf="@id/barrier" />
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="content"
-        />
+        app:constraint_referenced_ids="content" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/likes"
+        style="@style/Buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:checkable="true"
+        android:contentDescription="в"
+        app:icon="@drawable/ic_like_selector"
+        app:iconTint="@color/ic_like_tint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        tools:text="100" />
 
-        android:contentDescription="в" />
 
-    <TextView
-        android:id="@+id/textLikes"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/shares"
+        style="@style/Buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_share_24"
+        app:iconTint="@color/ic_share_tint"
         app:layout_constraintStart_toEndOf="@id/likes"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
-        android:text="@string/textLikes" />
-
-
-    <ImageButton
-        android:id="@+id/shares"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/textLikes"
-        app:layout_constraintTop_toBottomOf="@id/barrier2"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/ic_baseline_share_24"
-        />
-
-    <TextView
-        android:id="@+id/textShares"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/shares"
-        app:layout_constraintTop_toBottomOf="@id/barrier2"
-        android:text="@string/textShares" />
+        tools:text="100" />
 
 
     <ImageButton
@@ -135,17 +122,16 @@
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="@id/content"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
-        app:srcCompat="@drawable/ic_baseline_remove_red_eye_24"
-        />
+        app:srcCompat="@drawable/ic_baseline_remove_red_eye_24" />
 
     <TextView
         android:id="@+id/textViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/textViews"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/views"
-        app:layout_constraintTop_toBottomOf="@id/barrier2"
-        android:text="@string/textViews" />
+        app:layout_constraintTop_toBottomOf="@id/barrier2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
