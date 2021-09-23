@@ -1,27 +1,26 @@
 package com.example.andvk
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.launch
 import androidx.activity.viewModels
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AppCompatActivity
 import com.example.andvk.adapter.OnInteractionListener
 import com.example.andvk.adapter.PostAdapter
 import com.example.andvk.databinding.ActivityMainBinding
 import com.example.andvk.dto.Post
-import com.example.andvk.util.AndroidUtils
 import com.example.andvk.viewmodel.PostViewModel
 
 
 class MainActivity : AppCompatActivity() {
+    private val viewModel: PostViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-        val viewModel: PostViewModel by viewModels()
 
 
         val adapter = PostAdapter(object : OnInteractionListener {
@@ -39,15 +38,26 @@ class MainActivity : AppCompatActivity() {
 
             override fun onShare(post: Post) {
                 viewModel.shareById(post.id)
+
+                val intent = Intent(Intent.ACTION_SEND)
+                    .setType("text/plain")
+                    .putExtra(Intent.EXTRA_TEXT, post.content)
+                    .let {
+                        Intent.createChooser(it, null)
+                    }
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                } else {
+                    showToast(R.string.app_not_found_error)
+                }
             }
 
             override fun onDiscard(post: Post) {
                 viewModel.discardChanges()
             }
-        }
 
 
-        )
+        })
 
         binding.recList.adapter = adapter
 
@@ -61,46 +71,30 @@ class MainActivity : AppCompatActivity() {
             if (post.id == 0L) {
                 return@observe
             }
-            with(binding.content) {
-                requestFocus()
-                setText(post.content)
-            }
+
 
         })
-        binding.save.setOnClickListener {
-            with(binding.content) {
-                if (text.isNullOrBlank()) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Content can't be empty", Toast.LENGTH_SHORT
-                    ).show()
-                    return@setOnClickListener
-                }
-
-                viewModel.changeContent(text.toString())
-                viewModel.save()
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-                binding.discardEdit.isGone = true
-
-            }
+        val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.changeContent(result)
+            viewModel.save()
         }
-        binding.content.setOnFocusChangeListener { _, hasFocus ->
-            binding.discardEdit.isVisible = hasFocus
+        binding.addPost.setOnClickListener {
+            newPostLauncher.launch()
         }
-        binding.discardEdit.setOnClickListener {
-            binding.discardEdit.isGone = true
-            with(binding.content) {
-                viewModel.discardChanges()
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
 
-
-        }
     }
+
+
+}
+
+private fun Context.showToast(text: Int, length: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(
+        this,
+        getString(text),
+        length
+    )
+        .show()
 }
 
 

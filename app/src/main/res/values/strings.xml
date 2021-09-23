@@ -10,6 +10,10 @@
     <string name="textEdit">Edit</string>
     <string name="textPost">Post text here</string>
     <string name="like">Like</string>
+    <string name="app_not_found_error">Нет приложения для этого</string>
+    <string name="description_post_save">saveBtnNewPostAct</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="error_empty_content">Content cant be empty</string>
 
 
 </resources>
