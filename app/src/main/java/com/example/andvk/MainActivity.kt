@@ -83,6 +83,13 @@ class MainActivity : AppCompatActivity() {
             newPostLauncher.launch()
         }
 
+        val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.edit(result)
+        }
+
+
+
     }
 
 

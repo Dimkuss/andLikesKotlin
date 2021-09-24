@@ -1,12 +1,14 @@
 package com.example.andvk.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.andvk.R
+import com.example.andvk.*
 import com.example.andvk.databinding.CardPostBinding
 import com.example.andvk.dto.CounterFormatter
 import com.example.andvk.dto.Post
@@ -35,12 +37,14 @@ class PostAdapter(
         val post = getItem(position)
         holder.bind(post)
     }
+
 }
 
 class PostViewHolder(
     private val binding: CardPostBinding,
     private val onInteractionListener: OnInteractionListener,
 ) : RecyclerView.ViewHolder(binding.root) {
+
     fun bind(post: Post) {
         binding.apply {
             author.text = post.author
@@ -57,6 +61,7 @@ class PostViewHolder(
             shares.setOnClickListener {
                 onInteractionListener.onShare(post)
             }
+
             popupMenu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.options_post)
@@ -68,7 +73,6 @@ class PostViewHolder(
                             }
                             R.id.menuActionEdit -> {
 
-                                onInteractionListener.onEdit(post)
                                 true
                             }
                             else -> false
