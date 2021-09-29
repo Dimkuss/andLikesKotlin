@@ -18,19 +18,20 @@ class EditPostActivity : AppCompatActivity() {
         val binding = ActivityEditPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val post: Post? = intent.getParcelableExtra("Post")
+        val post: Post? = intent.getParcelableExtra(POST_KEY)
 
         binding.edit.setText(post?.content)
         binding.edit.requestFocus()
 
-        binding.edit.setOnClickListener {
+        binding.ok.setOnClickListener {
             val text = binding.edit.text?.toString()
             if (text.isNullOrBlank()) {
                 setResult(RESULT_CANCELED)
             } else {
                 val intent = Intent()
-                    .putExtra(POST_KEY,post)
+                    .putExtra(POST_KEY,post?.copy(content = text))
                 setResult(RESULT_OK,intent)
+                finish()
             }
 
         }

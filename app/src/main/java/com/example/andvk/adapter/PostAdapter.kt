@@ -72,7 +72,7 @@ class PostViewHolder(
                                 true
                             }
                             R.id.menuActionEdit -> {
-
+                                onInteractionListener.onEdit(post)
                                 true
                             }
                             else -> false

@@ -21,11 +21,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val editPostLauncher = registerForActivityResult(EditPostResultContract()) {
+            it?: return@registerForActivityResult
+            viewModel.edit(it)
+            viewModel.save()
+        }
+        val newPostLauncher = registerForActivityResult(NewPostResultContract()) {
+            it?: return@registerForActivityResult
+            viewModel.changeContent(it)
+            viewModel.save()
+        }
 
         val adapter = PostAdapter(object : OnInteractionListener {
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
+                editPostLauncher.launch(post)
             }
 
             override fun onLike(post: Post) {
@@ -74,19 +84,12 @@ class MainActivity : AppCompatActivity() {
 
 
         })
-        val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.changeContent(result)
-            viewModel.save()
-        }
+
         binding.addPost.setOnClickListener {
             newPostLauncher.launch()
         }
 
-        val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.edit(result)
-        }
+
 
 
 
