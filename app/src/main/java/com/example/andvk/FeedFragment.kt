@@ -3,39 +3,34 @@ package com.example.andvk
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.launch
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.andvk.NewPostFragment.Companion.idArgument
 import com.example.andvk.adapter.OnInteractionListener
 import com.example.andvk.adapter.PostAdapter
-import com.example.andvk.databinding.ActivityMainBinding
+import com.example.andvk.databinding.FragmentFeedBinding
 import com.example.andvk.dto.Post
 import com.example.andvk.viewmodel.PostViewModel
 
 
-class MainActivity : AppCompatActivity() {
-    private val viewModel: PostViewModel by viewModels()
+class FeedFragment : Fragment() {
+    private val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        val editPostLauncher = registerForActivityResult(EditPostResultContract()) {
-            it?: return@registerForActivityResult
-            viewModel.edit(it)
-            viewModel.save()
-        }
-        val newPostLauncher = registerForActivityResult(NewPostResultContract()) {
-            it?: return@registerForActivityResult
-            viewModel.changeContent(it)
-            viewModel.save()
-        }
+        val binding = FragmentFeedBinding.inflate(inflater, container, false)
 
         val adapter = PostAdapter(object : OnInteractionListener {
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
-                editPostLauncher.launch(post)
             }
 
             override fun onLike(post: Post) {
@@ -55,11 +50,11 @@ class MainActivity : AppCompatActivity() {
                     .let {
                         Intent.createChooser(it, null)
                     }
-                if (intent.resolveActivity(packageManager) != null) {
-                    startActivity(intent)
-                } else {
-                    showToast(R.string.app_not_found_error)
-                }
+//                if (intent.resolveActivity(packageManager) != null) {
+//                    startActivity(intent)
+//                } else {
+//                    showToast(R.string.app_not_found_error)
+//                }
             }
 
             override fun onDiscard(post: Post) {
@@ -71,13 +66,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.recList.adapter = adapter
 
-        viewModel.data.observe(this@MainActivity) { post ->
+        viewModel.data.observe(viewLifecycleOwner) { post ->
 
             adapter.submitList(post)
         }
 
 
-        viewModel.edited.observe(this, { post ->
+        viewModel.edited.observe(viewLifecycleOwner, { post ->
             if (post.id == 0L) {
                 return@observe
             }
@@ -86,17 +81,17 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.addPost.setOnClickListener {
-            newPostLauncher.launch()
+        findNavController().navigate(R.id.action_feedFragment_to_newPostFragment,
+        Bundle().apply { idArgument = 1L })
+
         }
 
-
-
-
+        return binding.root
+    }
 
     }
 
 
-}
 
 private fun Context.showToast(text: Int, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(
