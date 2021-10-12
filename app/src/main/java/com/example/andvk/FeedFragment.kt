@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.andvk.EditPostFragment.Companion.postArgument
 import com.example.andvk.NewPostFragment.Companion.idArgument
 import com.example.andvk.adapter.OnInteractionListener
 import com.example.andvk.adapter.PostAdapter
@@ -31,6 +32,9 @@ class FeedFragment : Fragment() {
         val adapter = PostAdapter(object : OnInteractionListener {
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
+                findNavController().navigate(R.id.action_feedFragment_to_editFragment,
+                    Bundle().apply { postArgument = post })
+
             }
 
             override fun onLike(post: Post) {
@@ -50,11 +54,11 @@ class FeedFragment : Fragment() {
                     .let {
                         Intent.createChooser(it, null)
                     }
-//                if (intent.resolveActivity(packageManager) != null) {
-//                    startActivity(intent)
-//                } else {
-//                    showToast(R.string.app_not_found_error)
-//                }
+               if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                } else {
+                   showToast(R.string.app_not_found_error)
+               }
             }
 
             override fun onDiscard(post: Post) {

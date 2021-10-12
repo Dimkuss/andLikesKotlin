@@ -1,4 +1,4 @@
-package navigation
+package com.example.andvk.util
 
 import android.os.Bundle
 import kotlin.properties.ReadWriteProperty

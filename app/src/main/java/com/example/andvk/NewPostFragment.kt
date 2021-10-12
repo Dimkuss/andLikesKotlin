@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.andvk.databinding.FragmentNewPostBinding
 import com.example.andvk.util.AndroidUtils
 import com.example.andvk.viewmodel.PostViewModel
-import navigation.LongDelegate
+import com.example.andvk.util.LongDelegate
 
 class NewPostFragment : Fragment() {
     companion object{
