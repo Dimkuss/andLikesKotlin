@@ -54,11 +54,11 @@ class FeedFragment : Fragment() {
                     .let {
                         Intent.createChooser(it, null)
                     }
-               if (intent.resolveActivity(packageManager) != null) {
+                if (intent.resolveActivity(requireContext().packageManager) != null) {
                     startActivity(intent)
                 } else {
-                   showToast(R.string.app_not_found_error)
-               }
+                    showToast(R.string.app_not_found_error)
+                }
             }
 
             override fun onDiscard(post: Post) {
@@ -84,17 +84,18 @@ class FeedFragment : Fragment() {
 
         })
 
+
+
         binding.addPost.setOnClickListener {
-        findNavController().navigate(R.id.action_feedFragment_to_newPostFragment,
-        Bundle().apply { idArgument = 1L })
+            findNavController().navigate(R.id.action_feedFragment_to_newPostFragment,
+                Bundle().apply { idArgument = 1L })
 
         }
 
         return binding.root
     }
 
-    }
-
+}
 
 
 private fun Context.showToast(text: Int, length: Int = Toast.LENGTH_SHORT) {
@@ -106,6 +107,9 @@ private fun Context.showToast(text: Int, length: Int = Toast.LENGTH_SHORT) {
         .show()
 }
 
+fun Fragment.showToast(text: Int, length: Int = Toast.LENGTH_SHORT) {
+    requireContext().showToast(text, length)
+}
 
 
 
