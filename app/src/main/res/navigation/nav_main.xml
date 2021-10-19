@@ -45,5 +45,5 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.andvk.DetailsFragment"
-        android:label="DetailsFragment" />
+        android:label="Конкретный пост" />
 </navigation>

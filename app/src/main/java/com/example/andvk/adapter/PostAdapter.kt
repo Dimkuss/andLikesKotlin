@@ -20,6 +20,7 @@ interface OnInteractionListener {
     fun onLike(post: Post) {}
     fun onShare(post: Post) {}
     fun onDiscard(post: Post) {}
+    fun onDetailsClicked(post: Post){}
 }
 
 
@@ -54,6 +55,9 @@ class PostViewHolder(
             likes.text = CounterFormatter.formatCounter(post.likeCount)
             shares.text = CounterFormatter.formatCounter(post.sharesCount)
 
+            root.setOnClickListener {
+                onInteractionListener.onDetailsClicked(post)
+            }
             likes.setOnClickListener {
                 onInteractionListener.onLike(post)
             }

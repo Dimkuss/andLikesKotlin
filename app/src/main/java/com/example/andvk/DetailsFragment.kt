@@ -14,6 +14,7 @@ import com.example.andvk.EditPostFragment.Companion.postArgument
 import com.example.andvk.NewPostFragment.Companion.idArgument
 import com.example.andvk.databinding.CardPostBinding
 import com.example.andvk.dto.CounterFormatter
+import com.example.andvk.dto.Post
 import com.example.andvk.util.LongDelegate
 import com.example.andvk.viewmodel.PostViewModel
 
@@ -69,21 +70,22 @@ class DetailsFragment : Fragment() {
                         showToast(R.string.app_not_found_error)
                     }
                 }
-                author.setOnClickListener{
-                    findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
-                        Bundle().apply
-                        { idArgument = 1L })
-                }
-                published.setOnClickListener{
-                    findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
-                        Bundle().apply
-                        { idArgument = 1L })
-                }
-                content.setOnClickListener{
-                    findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
-                        Bundle().apply
-                        { idArgument = 1L })
-                }
+
+//                author.setOnClickListener{
+//                    findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
+//                        Bundle().apply
+//                        { idArgument = 1L })
+//                }
+//                published.setOnClickListener{
+//                    findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
+//                        Bundle().apply
+//                        { idArgument = 1L })
+//                }
+//                content.setOnClickListener{
+//                    findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
+//                        Bundle().apply
+//                        { idArgument = 1L })
+//                }
 
                 popupMenu.setOnClickListener { view ->
                     PopupMenu(view.context, view).apply {

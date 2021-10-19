@@ -18,7 +18,7 @@ class PostRepositoryInMemoryImpl(context: Context) : PostRepository {
     private val gson = Gson()
 
     private var posts: List<Post> = file.exists().let { exists ->
-        exists
+
         if (exists) {
             gson.fromJson(file.readText(), type)
         } else {
@@ -63,7 +63,7 @@ class PostRepositoryInMemoryImpl(context: Context) : PostRepository {
         if (post.id == 0L) {
             posts = listOf(
                 post.copy(
-                    id = nextId++,
+                    id = posts.firstOrNull()?.id?.inc() ?: 1L,
                     author = "Me",
                     likedByMe = false,
                     published = "Just now"
