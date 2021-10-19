@@ -71,21 +71,6 @@ class DetailsFragment : Fragment() {
                     }
                 }
 
-//                author.setOnClickListener{
-//                    findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
-//                        Bundle().apply
-//                        { idArgument = 1L })
-//                }
-//                published.setOnClickListener{
-//                    findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
-//                        Bundle().apply
-//                        { idArgument = 1L })
-//                }
-//                content.setOnClickListener{
-//                    findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
-//                        Bundle().apply
-//                        { idArgument = 1L })
-//                }
 
                 popupMenu.setOnClickListener { view ->
                     PopupMenu(view.context, view).apply {

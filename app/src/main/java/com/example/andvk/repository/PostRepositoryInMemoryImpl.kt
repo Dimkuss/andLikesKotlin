@@ -12,7 +12,6 @@ class PostRepositoryInMemoryImpl(context: Context) : PostRepository {
         const val POST_FILE = "posts.json"
     }
 
-    private var nextId = 1L
     private val file = context.filesDir.resolve(POST_FILE)
     private val type = TypeToken.getParameterized(List::class.java, Post::class.java).type
     private val gson = Gson()
