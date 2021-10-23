@@ -83,7 +83,7 @@ class DetailsFragment : Fragment() {
                                 }
                                 R.id.menuActionEdit -> {
                                     viewModel.edit(post)
-                                    findNavController().navigate(R.id.action_feedFragment_to_editFragment,
+                                    findNavController().navigate(R.id.action_detailsFragment_to_editPostFragment,
                                         Bundle().apply { postArgument = post })
                                     true
                                 }

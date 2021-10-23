@@ -4,9 +4,11 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.andvk.db.AppDb
 import com.example.andvk.dto.Post
 import com.example.andvk.repository.PostRepository
 import com.example.andvk.repository.PostRepositoryInMemoryImpl
+import com.example.andvk.repository.PostRepositorySQLiteImpl
 
 private val empty = Post(
     id = 0,
@@ -17,7 +19,9 @@ private val empty = Post(
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: PostRepository = PostRepositoryInMemoryImpl(application)
+    private val repository: PostRepository = PostRepositorySQLiteImpl(
+        AppDb.getInstance(application).postDao
+    )
     val data = repository.getAll()
     val edited = MutableLiveData(empty)
 

@@ -45,5 +45,9 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.andvk.DetailsFragment"
-        android:label="Конкретный пост" />
+        android:label="Конкретный пост">
+        <action
+            android:id="@+id/action_detailsFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment" />
+    </fragment>
 </navigation>

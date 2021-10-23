@@ -65,6 +65,7 @@ class FeedFragment : Fragment() {
             override fun onDiscard(post: Post) {
                 viewModel.discardChanges()
             }
+
             override fun onDetailsClicked(post: Post) {
                 findNavController().navigate(R.id.action_feedFragment_to_detailsFragment,
                     Bundle().apply { idArgument = post.id })
