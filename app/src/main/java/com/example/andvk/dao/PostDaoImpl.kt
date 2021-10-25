@@ -103,12 +103,16 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
     }
 
     override fun shareById(id: Long) {
-        TODO("Not yet implemented")
+        db.execSQL(
+            """
+           UPDATE posts SET
+               ${PostColumns.COLUMN_SHARES} = ${PostColumns.COLUMN_SHARES} +  1
+           WHERE id = ?;
+        """.trimIndent(), arrayOf(id)
+        )
     }
 
-    override fun discardEdit(post: Post) {
-        TODO("Not yet implemented")
-    }
+
 
     private fun map(cursor: Cursor): Post {
         with(cursor) {
@@ -119,7 +123,7 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
                 published = getString(getColumnIndexOrThrow(PostColumns.COLUMN_PUBLISHED)),
                 likedByMe = getInt(getColumnIndexOrThrow(PostColumns.COLUMN_LIKED_BY_ME)) != 0,
                 likeCount = getLong(getColumnIndexOrThrow(PostColumns.COLUMN_LIKES)),
-                sharesCount = getLong(getColumnIndexOrThrow(PostColumns.COLUMN_LIKES))
+                sharesCount = getLong(getColumnIndexOrThrow(PostColumns.COLUMN_SHARES))
             )
         }
     }

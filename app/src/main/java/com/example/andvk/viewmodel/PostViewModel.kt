@@ -3,11 +3,9 @@ package com.example.andvk.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.andvk.db.AppDb
 import com.example.andvk.dto.Post
 import com.example.andvk.repository.PostRepository
-import com.example.andvk.repository.PostRepositoryInMemoryImpl
 import com.example.andvk.repository.PostRepositorySQLiteImpl
 
 private val empty = Post(

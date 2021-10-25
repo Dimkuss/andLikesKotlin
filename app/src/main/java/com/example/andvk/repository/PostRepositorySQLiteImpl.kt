@@ -31,16 +31,7 @@ class PostRepositorySQLiteImpl(
         data.value = posts
     }
 
-    override fun discardEdit(post: Post) {
-        dao.discardEdit(post)
-        if (post.id == 0L) {
-            data.value = posts
-            return
-        }
 
-        data.value = posts
-
-    }
 
     override fun likeById(id: Long) {
         dao.likeById(id)
@@ -55,6 +46,7 @@ class PostRepositorySQLiteImpl(
 
     override fun shareById(id: Long) {
         dao.shareById(id)
+
         posts = posts.map {
             if (it.id != id) it else it.copy(sharesCount = it.sharesCount + 1)
         }
